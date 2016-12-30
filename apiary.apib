@@ -1,0 +1,19 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# Liovinci API
+
+# Group Products
+
+## Product Collection [/explore]
+
+### Search Products [GET]
++ Request (application/json)
++ Attributes
+    + productName: Example (string)
+    + companyName: Google (string)
+    + filters
+        + dateAdded
+            + on: 11/12/22 (string)
+            + before: 10/12/22 (string)
+            + after: 7/12/22 (string)
