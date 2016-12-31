@@ -3,17 +3,62 @@ HOST: http://polls.apiblueprint.org/
 
 # Liovinci API
 
-# Group Products
+# Group REST Interfaces
 
-## Product Collection [/explore]
+## Products  [/explore/api]
+
+REST interface for searching, querying and modifying products on the site
 
 ### Search Products [GET]
 + Request (application/json)
-+ Attributes
-    + productName: Example (string)
-    + companyName: Google (string)
-    + filters
-        + dateAdded
-            + on: 11/12/22 (string)
-            + before: 10/12/22 (string)
-            + after: 7/12/22 (string)
+
+    + Attributes
+        + productName: Example (string, required)
+        + companyName: Google (string)
+        + filters
+            + dateAdded (DateFilter)
+            + tags (array):
+                + tech
+                + utility
+            + lastUpdate (DateFilter)
+    
+    
+    
+    + Schema
+    
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "pattern": "^(\\d{2}/\\d{2}/\\d{2})"
+                }
+              }
+            }
+
++ Response 200 (application/json)
+    
+    + Attributes
+        + results (array[Product], required) l
+
+
+## Data Structures
+
+### DateFilter
++ on: 11/12/22 (string)
++ before: 10/12/22 (string)
++ after: 7/12/22 (string)
+
+### Product
++ productName: Example (string, required)
++ companyName: Google (string, required)
++ dateAdded: 11/12/13 (string, required)
++ lastUpdate: 11/12/14 (string)
++ updates (array[Update])
++ rating: 5 (number)
+
+### Update
++ title: An Update (string,required)
++ datePosted: 11/12/15 (string, required)
++ authorName: Joe Bloggs (string, required)
