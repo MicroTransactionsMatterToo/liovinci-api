@@ -5,7 +5,7 @@ HOST: http://polls.apiblueprint.org/
 
 # Group REST Interfaces
 
-## Products  [/explore/api]
+## Search  [/explore/api?search]
 
 REST interface for searching, querying and modifying products on the site
 
@@ -40,7 +40,20 @@ REST interface for searching, querying and modifying products on the site
 + Response 200 (application/json)
     
     + Attributes
-        + results (array[Product], required) l
+        + results (array[ShortProduct], required)
+
+## Products [/explore/api?getProduct]
+
+### Fetch Product [GET]
++ Request (application/json)
+    
+    + Attributes
+        + productID: 12311124531324 (number, required)
+
++ Response 200 (application/json)
+    
+    + Attributes
+        + result (Product, required)
 
 
 ## Data Structures
@@ -50,15 +63,71 @@ REST interface for searching, querying and modifying products on the site
 + before: 10/12/22 (string)
 + after: 7/12/22 (string)
 
-### Product
+### ShortProduct
+Similar to `Product`, but with extraneous data stripped
+
 + productName: Example (string, required)
-+ companyName: Google (string, required)
++ productID: 12311124531324 (number, required)
++ company (Company)
 + dateAdded: 11/12/13 (string, required)
 + lastUpdate: 11/12/14 (string)
 + updates (array[Update])
 + rating: 5 (number)
 
+
 ### Update
 + title: An Update (string,required)
 + datePosted: 11/12/15 (string, required)
 + authorName: Joe Bloggs (string, required)
+
+### Product
++ productName: Example (string, required)
++ productID: 12311124531324 (number, required)
++ company (Company)
++ dateAdded: 11/12/13 (string, required)
++ lastUpdate: 11/12/14 (string)
++ updates (array[Update])
++ rating: 5 (number)
++ comments (array[Comment])
+
+
+### Media
++ type
+    + One Of
+        + picture
+        + video
+        + thumbnail
+        + audioClip
++ resourceName: Profile Pic.jpeg (string, required)
++ resourceUri: http://thing.thing/img/img.jpeg (string, required)
++ alternateText: Profile Picture for Google (string, required)
++ size
+    + height: 20 (number)
+    + width: 30 (number)
+
+### Thumbnail
++ resourceName: thumbnailPic.jpeg (string, required)
++ alternateText: Thumbnail of product (string, required)
++ size
+    + height: 20 (number)
+    + width: 30 (number)
+
+### Company
++ name: Google (string, required)
++ companyPage: https://abc.xyz (string)
+
+
+
+
+### User
++ username: Gerald Joe Bloggs (string, required)
++ dateJoined: 11/12/32 (string, required)
++ profilePic (required)
+    + thumbnail (Thumbnail)
+    + fullSize (Media)
++ userID: 12312311123 (number, required)
+
+### Comment
++ user (User)
++ content: This is a comment (string, required)
++ datePosted: 11/12/41 (string, required)
