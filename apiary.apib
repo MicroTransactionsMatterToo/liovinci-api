@@ -4,12 +4,9 @@ HOST: http://polls.apiblueprint.org/
 # Liovinci API
 
 # Group REST Interfaces
-
-## Search  [/explore/api?search]
-
 REST interface for searching, querying and modifying products on the site
 
-### Search Products [GET]
+## Search Products [GET /explore/api?searchProducts]
 + Request (application/json)
 
     + Attributes
@@ -17,10 +14,11 @@ REST interface for searching, querying and modifying products on the site
         + companyName: Google (string)
         + filters
             + dateAdded (DateFilter)
-            + tags (array):
+            + tags (array[string]):
                 + tech
                 + utility
             + lastUpdate (DateFilter)
+        + limit: 5 (number)
     
     
     
@@ -42,9 +40,7 @@ REST interface for searching, querying and modifying products on the site
     + Attributes
         + results (array[ShortProduct], required)
 
-## Products [/explore/api?getProduct]
-
-### Fetch Product [GET]
+## Fetch Product [GET /explore/api?fetchProduct]
 + Request (application/json)
     
     + Attributes
@@ -55,17 +51,33 @@ REST interface for searching, querying and modifying products on the site
     + Attributes
         + result (Product, required)
 
+# Group URI Interface
+Interface for use in the site itself, using traditional URI parameters. e.g. `/explore/api?gg=1`
 
-## Data Structures
+## Search Products [GET /explore/api{?pn,cn,dao,dab,daa,tgs,luo,lub,lua,li}]
 
-### DateFilter
++ Parameters
+    + pn: A Product (required, string) - Name of the Product to find
+    + cn: Google (optional, string) ... Company name to filter with
+    + dao: 12/12/20 (optional, string) ... Date Added On
+    + dab: 12/13/20 (optional, string) ... Date Added Before
+    + daa: 12/11/20 (optional, string) ... Date Added After
+    + tgs (optional, string) ... A Tag to filter with. Add multiple times to specify multiple tags
+    + luo (optional, string) ... Last updated on
+    + lub (optional, string) ... Last updated before
+    + lua (optional, string) ... Last updated after
+    + li: 32 (optional, number) - Number of items to limit the return to
+    
+        + Default: 40
+
+# Data Structures
+
+## DateFilter
 + on: 11/12/22 (string)
 + before: 10/12/22 (string)
 + after: 7/12/22 (string)
 
-### ShortProduct
-Similar to `Product`, but with extraneous data stripped
-
+## ShortProduct
 + productName: Example (string, required)
 + productID: 12311124531324 (number, required)
 + company (Company)
@@ -75,12 +87,12 @@ Similar to `Product`, but with extraneous data stripped
 + rating: 5 (number)
 
 
-### Update
+## Update
 + title: An Update (string,required)
 + datePosted: 11/12/15 (string, required)
 + authorName: Joe Bloggs (string, required)
 
-### Product
+## Product
 + productName: Example (string, required)
 + productID: 12311124531324 (number, required)
 + company (Company)
@@ -91,7 +103,7 @@ Similar to `Product`, but with extraneous data stripped
 + comments (array[Comment])
 
 
-### Media
+## Media
 + type
     + One Of
         + picture
@@ -105,21 +117,21 @@ Similar to `Product`, but with extraneous data stripped
     + height: 20 (number)
     + width: 30 (number)
 
-### Thumbnail
+## Thumbnail
 + resourceName: thumbnailPic.jpeg (string, required)
 + alternateText: Thumbnail of product (string, required)
 + size
     + height: 20 (number)
     + width: 30 (number)
 
-### Company
+## Company
 + name: Google (string, required)
 + companyPage: https://abc.xyz (string)
 
 
 
 
-### User
+## User
 + username: Gerald Joe Bloggs (string, required)
 + dateJoined: 11/12/32 (string, required)
 + profilePic (required)
@@ -127,7 +139,7 @@ Similar to `Product`, but with extraneous data stripped
     + fullSize (Media)
 + userID: 12312311123 (number, required)
 
-### Comment
+## Comment
 + user (User)
 + content: This is a comment (string, required)
 + datePosted: 11/12/41 (string, required)
