@@ -47,6 +47,10 @@ REST interface for searching, querying and modifying products on the site
 
 ## Fetch Product [GET /explore/api?fetchProduct]
 + Request (application/json)
+    + Headers 
+    
+            Authorization: Bearer ${TOKEN}
+            X-Nonce-Value: ${NONCE}
     
     + Attributes
         + productID: 12311124531324 (number, required)
@@ -55,6 +59,36 @@ REST interface for searching, querying and modifying products on the site
     
     + Attributes
         + result (Product, required)
+
+## Fetch User [GET /explore/api?fetchUser]
++ Request (application/json)
+    + Headers 
+    
+            Authorization: Bearer ${TOKEN}
+            X-Nonce-Value: ${NONCE}
+            
+    + Attributes
+        + userID: 112313992 (number, required)
+
++ Response 200
+    
+    + Attributes
+        + result (User)
+
+## Fetch Company [GET /explore/api?fetchCompany]
++ Request (application/json)
+    + Headers 
+    
+            Authorization: Bearer ${TOKEN}
+            X-Nonce-Value: ${NONCE}
+    
+    + Attributes
+        + companyID: 1232412531 (number, required)
+
++ Response 200
+    
+    + Attributes
+        + result (Company)
 
 # Group URI Interface
 Interface for use in the site itself, using traditional URI parameters. e.g. `/explore/api?gg=1`
