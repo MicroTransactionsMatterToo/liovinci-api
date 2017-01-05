@@ -13,6 +13,7 @@ REST interface for searching, querying and modifying products on the site
     
             Authorization: Bearer ${TOKEN}
             X-Nonce-Value: ${NONCE}
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
 
     + Attributes
         + productName: Example (string, required)
@@ -41,6 +42,9 @@ REST interface for searching, querying and modifying products on the site
             }
 
 + Response 200 (application/json)
+    + Headers
+    
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + results (array[ShortProduct], required)
@@ -51,11 +55,15 @@ REST interface for searching, querying and modifying products on the site
     
             Authorization: Bearer ${TOKEN}
             X-Nonce-Value: ${NONCE}
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + productID: 12311124531324 (number, required)
 
 + Response 200 (application/json)
+    + Headers
+
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + result (Product, required)
@@ -66,11 +74,15 @@ REST interface for searching, querying and modifying products on the site
     
             Authorization: Bearer ${TOKEN}
             X-Nonce-Value: ${NONCE}
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
             
     + Attributes
         + userID: 112313992 (number, required)
 
 + Response 200
+    + Headers
+    
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + result (User)
@@ -81,11 +93,15 @@ REST interface for searching, querying and modifying products on the site
     
             Authorization: Bearer ${TOKEN}
             X-Nonce-Value: ${NONCE}
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + companyID: 1232412531 (number, required)
 
 + Response 200
+    + Headers
+
+            Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
     
     + Attributes
         + result (Company)
