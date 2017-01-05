@@ -9,6 +9,11 @@ REST interface for searching, querying and modifying products on the site
 ## Search Products [GET /explore/api?searchProducts]
 + Request (application/json)
 
+    + Headers 
+    
+            Authorization: Bearer ${TOKEN}
+            X-Nonce-Value: ${NONCE}
+
     + Attributes
         + productName: Example (string, required)
         + companyName: Google (string)
@@ -18,7 +23,7 @@ REST interface for searching, querying and modifying products on the site
                 + tech
                 + utility
             + lastUpdate (DateFilter)
-        + limit: 5 (number)
+        + limit: 5 (number, required)
     
     
     
@@ -54,7 +59,7 @@ REST interface for searching, querying and modifying products on the site
 # Group URI Interface
 Interface for use in the site itself, using traditional URI parameters. e.g. `/explore/api?gg=1`
 
-## Search Products [GET /explore/api{?pn,cn,dao,dab,daa,tgs,luo,lub,lua,li}]
+## Search Products [GET /explore{?pn,cn,dao,dab,daa,tgs,luo,lub,lua,li}]
 
 + Parameters
     + pn: A Product (required, string) - Name of the Product to find
@@ -69,6 +74,9 @@ Interface for use in the site itself, using traditional URI parameters. e.g. `/e
     + li: 32 (optional, number) - Number of items to limit the return to
     
         + Default: 40
+        
+        
++ Response 200 (document/html)
 
 # Data Structures
 
